@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeCoding Dashboard</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-code me-2"></i>VibeCoding Dashboard
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="notificationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge bg-danger rounded-pill">3</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationsDropdown">
+                            <li><h6 class="dropdown-header">Notifications</h6></li>
+                            <li><a class="dropdown-item" href="#">Tâche "Backend CRUD" en retard</a></li>
+                            <li><a class="dropdown-item" href="#">Nouveau commentaire sur "Cahier des charges"</a></li>
+                            <li><a class="dropdown-item" href="#">Projet "Example" à 65%</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Voir toutes les notifications</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-1"></i>Admin
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i>Profil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i>Paramètres</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i>Déconnexion</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-lg-2 col-md-3 p-0">
+                <div class="sidebar">
+                    <div class="p-3">
+                        <button class="btn btn-primary w-100 mb-3" id="newProjectBtn">
+                            <i class="fas fa-plus me-2"></i>Nouveau Projet
+                        </button>
+                    </div>
+
+                    <div class="p-3" id="projectsList">
+                        <!-- Projects will be loaded dynamically here -->
+                        <h6 class="sidebar-header">Mes Projets</h6>
+                    </div>
+
+                    <div class="p-3 mt-3">
+                        <h6 class="text-uppercase text-muted fw-bold">Menu</h6>
+                        <ul class="nav flex-column">
+                            <li class="sidebar-item">
+                                <i class="fas fa-home"></i> Tableau de bord
+                            </li>
+                            <li class="sidebar-item">
+                                <i class="fas fa-tasks"></i> Tâches
+                            </li>
+                            <li class="sidebar-item">
+                                <i class="fas fa-calendar-alt"></i> Calendrier
+                            </li>
+                            <li class="sidebar-item">
+                                <i class="fas fa-users"></i> Équipe
+                            </li>
+                            <li class="sidebar-item">
+                                <i class="fas fa-chart-pie"></i> Rapports
+                            </li>
+                            <li class="sidebar-item">
+                                <i class="fas fa-cog"></i> Paramètres
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="p-3 mt-3">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <h6 class="card-title">Progression Globale</h6>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">65%</div>
+                                </div>
+                                <p class="small text-muted mb-0"><span id="activeProjectsCount">0</span> projets actifs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-lg-10 col-md-9 py-3">
+                <div id="projectView">
+                    <!-- Project content will be loaded dynamically here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Project Modal (Create/Edit Project) -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nouveau projet</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="projectForm">
+                        <input type="hidden" id="projectId">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="projectTitle" class="form-label">Nom du projet</label>
+                                <input type="text" class="form-control" id="projectTitle" placeholder="Ex: Portail client" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="projectClient" class="form-label">Client</label>
+                                <input type="text" class="form-control" id="projectClient" placeholder="Ex: Acme Corp">
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="projectStartDate" class="form-label">Date de début</label>
+                                <input type="date" class="form-control" id="projectStartDate">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="projectEndDate" class="form-label">Date de fin estimée</label>
+                                <input type="date" class="form-control" id="projectEndDate">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="projectDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="projectDescription" rows="3" placeholder="Décrivez brièvement le projet..."></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="projectTemplate" class="form-label">Template</label>
+                            <select class="form-select" id="projectTemplate">
+                                <option selected>Choisir un template...</option>
+                                <option>Application Web</option>
+                                <option>API Backend</option>
+                                <option>Site E-commerce</option>
+                                <option>Dashboard Analytics</option>
+                                <option>Mobile App</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="projectTeamMembers" class="form-label">Membres de l'équipe</label>
+                            <select class="form-select" id="projectTeamMembers" multiple>
+                                <option>Pierre Martin (Chef de projet)</option>
+                                <option>Marie Smith (Développeuse Backend)</option>
+                                <option>Jean Dupont (Développeur Fullstack)</option>
+                                <option>Alice Lambert (UX Designer)</option>
+                                <option>Thomas Leroy (Développeur Mobile)</option>
+                                <option>Sophie Bernard (Testeuse QA)</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="saveProjectBtn">Sauvegarder le projet</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Task Modal -->
+    <div class="modal fade" id="newTaskModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nouvelle tâche</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="taskForm">
+                        <input type="hidden" id="currentProjectTaskModalId">
+                        <div class="mb-3">
+                            <label for="taskTitle" class="form-label">Titre</label>
+                            <input type="text" class="form-control" id="taskTitle" placeholder="Ex: Implémenter le panier" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="taskDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="taskDescription" rows="3" placeholder="Décrivez la tâche en détails..."></textarea>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="taskPriority" class="form-label">Priorité</label>
+                                <select class="form-select" id="taskPriority">
+                                    <option>Haute</option>
+                                    <option selected>Moyenne</option>
+                                    <option>Basse</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="taskDueDate" class="form-label">Échéance</label>
+                                <input type="date" class="form-control" id="taskDueDate">
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="taskAssignedTo" class="form-label">Assignée à</label>
+                                <select class="form-select" id="taskAssignedTo">
+                                    <option selected>Jean Dupont</option>
+                                    <option>Marie Smith</option>
+                                    <option>Alice Lambert</option>
+                                    <option>Pierre Martin</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="taskChecklist" class="form-label">Checklist</label>
+                                <select class="form-select" id="taskChecklist">
+                                    <option selected>Général</option>
+                                    <option>Backend</option>
+                                    <option>Frontend</option>
+                                    <option>Tests</option>
+                                    <option>Documentation</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="taskDependencies" class="form-label">Dépendances</label>
+                            <select class="form-select" id="taskDependencies" multiple>
+                                <option>Génération entités JPA</option>
+                                <option>CRUD Spring Data REST</option>
+                                <option>Page d'accueil attractive</option>
+                                <option>Page login simple & sécurisée</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="createTaskBtn">Créer la tâche</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Upload Document Modal -->
+    <div class="modal fade" id="uploadDocumentModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Uploader un document</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="documentUploadForm">
+                        <input type="hidden" id="currentProjectDocumentModalId">
+                        <div class="mb-3">
+                            <label for="documentFile" class="form-label">Fichier</label>
+                            <input type="file" class="form-control" id="documentFile" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="documentName" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="documentName" placeholder="Ex: Cahier des charges v2" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="documentType" class="form-label">Type</label>
+                            <select class="form-select" id="documentType">
+                                <option>Document</option>
+                                <option>Spécification</option>
+                                <option>Rapport</option>
+                                <option>Présentation</option>
+                                <option>Diagramme</option>
+                                <option>Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="documentDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="documentDescription" rows="3" placeholder="Description du document..."></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="notifyTeam">
+                                <label class="form-check-label" for="notifyTeam">Notifier l'équipe par email</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="uploadDocumentBtn">Uploader</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Milestone Modal -->
+    <div class="modal fade" id="newMilestoneModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nouveau Jalon</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="milestoneForm">
+                        <input type="hidden" id="currentProjectMilestoneModalId">
+                        <input type="hidden" id="milestoneId">
+                        <div class="mb-3">
+                            <label for="milestoneTitle" class="form-label">Titre</label>
+                            <input type="text" class="form-control" id="milestoneTitle" placeholder="Ex: Phase de conception terminée" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="milestoneDate" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="milestoneDate" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="milestoneStatus" class="form-label">Statut</label>
+                            <select class="form-select" id="milestoneStatus">
+                                <option value="upcoming">À venir</option>
+                                <option value="in-progress">En cours</option>
+                                <option value="completed">Terminé</option>
+                                <option value="delayed">Retardé</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="milestoneDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="milestoneDescription" rows="3" placeholder="Description du jalon..."></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="saveMilestoneBtn">Sauvegarder le jalon</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Custom JS -->
+    <script src="js/app.js"></script>
+</body>
+</html>
