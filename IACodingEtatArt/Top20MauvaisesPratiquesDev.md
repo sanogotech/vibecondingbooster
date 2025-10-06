@@ -87,5 +87,283 @@ Et cette boussole, c’est ta **rigueur de développeur** : comprendre, tester, 
 
 ---
 
-Souhaites-tu que je t’intègre ce **Top 20** directement dans ton texte principal complet (avec titres cohérents et format final LinkedIn/Medium)
-ou que je t’en fasse une **infographie visuelle** (tableau synthétique + icônes + résumé “erreur → conséquence → solution”) ?
+
+
+# 🤖💥 **Top 30 des Mauvaises Pratiques avec l’IA Générative en Développement**
+
+---
+
+## 🧠 1. **Demander du code sans contexte**
+
+**❌ Mauvaise pratique :** Prompt trop vague (“fais un script Python pour ça”).
+**⚠️ Conséquence :** L’IA code “dans le vide” → erreurs d’environnement, confusion métier.
+**✅ Bonne pratique :** Indique toujours : langage, objectif métier, contraintes, dépendances.
+
+---
+
+## 🧩 2. **Accepter la réponse sans exécution réelle**
+
+**❌ Mauvaise pratique :** Copier-coller sans tester.
+**⚠️ Conséquence :** Régressions silencieuses, bugs cachés.
+**✅ Bonne pratique :** Tester systématiquement le code généré avant tout commit.
+
+---
+
+## 🧱 3. **Ne pas comprendre le code généré**
+
+**❌ Mauvaise pratique :** Utiliser le code IA sans lecture critique.
+**⚠️ Conséquence :** Incompréhension → impossibilité de debug.
+**✅ Bonne pratique :** Relis, reformule et commente le code avant intégration.
+
+---
+
+## 🧬 4. **Ne pas expliquer clairement les symptômes du bug**
+
+**❌ Mauvaise pratique :** “Ça ne marche pas.”
+**⚠️ Conséquence :** L’IA corrige à l’aveugle.
+**✅ Bonne pratique :** Décris le comportement attendu, observé et l’environnement d’exécution.
+
+---
+
+## 🔄 5. **Assembler plusieurs suggestions IA incohérentes**
+
+**❌ Mauvaise pratique :** Fusionner plusieurs bouts de code de prompts différents.
+**⚠️ Conséquence :** Incompatibilité, duplication de logique.
+**✅ Bonne pratique :** Vérifie la cohérence des imports, des noms de variables et des dépendances.
+
+---
+
+## 📜 6. **Ignorer la licence du code généré**
+
+**❌ Mauvaise pratique :** Réutiliser du code IA sans vérifier la licence.
+**⚠️ Conséquence :** Risques juridiques (copie d’un code sous GPL, etc.).
+**✅ Bonne pratique :** Reformuler et citer les sources si l’IA s’en inspire.
+
+---
+
+## 🔐 7. **Mettre des clés API ou secrets dans le prompt**
+
+**❌ Mauvaise pratique :** Donner des credentials à l’IA.
+**⚠️ Conséquence :** Risque de fuite de données sensibles.
+**✅ Bonne pratique :** Remplace les clés par des placeholders.
+
+---
+
+## ⚙️ 8. **Demander une optimisation sans préciser le but**
+
+**❌ Mauvaise pratique :** “Optimise ce code.”
+**⚠️ Conséquence :** L’IA modifie la logique sans critère mesurable.
+**✅ Bonne pratique :** Précise ton objectif : performance, lisibilité, complexité, mémoire, etc.
+
+---
+
+## 🧾 9. **Modifier le code IA sans versionner**
+
+**❌ Mauvaise pratique :** Intégrer sans commit préalable.
+**⚠️ Conséquence :** Perte de traçabilité.
+**✅ Bonne pratique :** Versionne avant et après les changements IA.
+
+---
+
+## 🧩 10. **Fournir un message d’erreur partiel**
+
+**❌ Mauvaise pratique :** Envoyer seulement un bout du log.
+**⚠️ Conséquence :** Mauvais diagnostic.
+**✅ Bonne pratique :** Fournir la stacktrace complète + le contexte.
+
+---
+
+## 🧠 11. **Demander du code trivial**
+
+**❌ Mauvaise pratique :** “Fais une boucle for en Python.”
+**⚠️ Conséquence :** Dépendance cognitive, perte de réflexes.
+**✅ Bonne pratique :** Utilise l’IA sur les problèmes conceptuels, pas syntaxiques.
+
+---
+
+## 🧰 12. **Faire confiance à l’IA sur la sécurité**
+
+**❌ Mauvaise pratique :** “Ajoute une authentification JWT” sans vérif.
+**⚠️ Conséquence :** Vulnérabilités majeures.
+**✅ Bonne pratique :** Toujours auditer les mécanismes de sécurité.
+
+---
+
+## ⚖️ 13. **Laisser l’IA installer trop de dépendances**
+
+**❌ Mauvaise pratique :** Ajouter des packages sans vérification.
+**⚠️ Conséquence :** Poids inutile, faille potentielle.
+**✅ Bonne pratique :** Vérifie chaque dépendance ajoutée.
+
+---
+
+## 🧩 14. **Refactoriser sans revalider**
+
+**❌ Mauvaise pratique :** Demander plusieurs refactors sans tests.
+**⚠️ Conséquence :** Code incohérent ou instable.
+**✅ Bonne pratique :** Teste après chaque refactor IA.
+
+---
+
+## 🧭 15. **Utiliser l’IA sans politique d’équipe**
+
+**❌ Mauvaise pratique :** Pas de standard, chacun fait différemment.
+**⚠️ Conséquence :** Code hétérogène, erreurs récurrentes.
+**✅ Bonne pratique :** Définis une politique IA (prompts types, revues, validations).
+
+---
+
+## 🔁 16. **Utiliser l’IA comme débogueur principal**
+
+**❌ Mauvaise pratique :** “Corrige ce bug” sans analyser soi-même.
+**⚠️ Conséquence :** Tu ne développes plus tes capacités de diagnostic.
+**✅ Bonne pratique :** Utilise l’IA après avoir toi-même isolé la cause probable.
+
+---
+
+## 🔍 17. **Ignorer les erreurs mineures signalées par l’IA**
+
+**❌ Mauvaise pratique :** “Ce n’est qu’un warning.”
+**⚠️ Conséquence :** Petit warning → gros bug plus tard.
+**✅ Bonne pratique :** Comprends et traite chaque avertissement.
+
+---
+
+## 🧩 18. **Multiplier les prompts sans cohérence**
+
+**❌ Mauvaise pratique :** Repartir de zéro à chaque requête.
+**⚠️ Conséquence :** Perte de fil logique → réponses incohérentes.
+**✅ Bonne pratique :** Itère sur un même contexte conversationnel.
+
+---
+
+## 🧠 19. **Ne pas relire les commentaires IA**
+
+**❌ Mauvaise pratique :** Garder les commentaires IA tels quels.
+**⚠️ Conséquence :** Documentation erronée ou confuse.
+**✅ Bonne pratique :** Reécris les commentaires selon ton propre raisonnement.
+
+---
+
+## 🧮 20. **Ne pas documenter les décisions IA**
+
+**❌ Mauvaise pratique :** Accepter sans noter pourquoi.
+**⚠️ Conséquence :** Plus personne ne sait pourquoi ce choix a été fait.
+**✅ Bonne pratique :** Documente les suggestions adoptées avec justification.
+
+---
+
+## 🧰 21. **Copier un projet complet généré par IA**
+
+**❌ Mauvaise pratique :** “Fais-moi un SaaS complet.”
+**⚠️ Conséquence :** Projet fragile, incohérent, non maintenable.
+**✅ Bonne pratique :** Découpe par modules et valide chaque composant.
+
+---
+
+## 🧩 22. **Ignorer les limites de contexte du modèle**
+
+**❌ Mauvaise pratique :** Envoyer trop de code ou d’infos dans un seul prompt.
+**⚠️ Conséquence :** Coupure, oubli de lignes critiques.
+**✅ Bonne pratique :** Découpe le code en morceaux pertinents.
+
+---
+
+## 🧠 23. **Utiliser un modèle IA sans connaître ses capacités**
+
+**❌ Mauvaise pratique :** Demander du code C++ à un modèle textuel basique.
+**⚠️ Conséquence :** Réponses obsolètes, syntaxe fausse.
+**✅ Bonne pratique :** Choisis le bon modèle selon la tâche (code, doc, debug).
+
+---
+
+## ⚙️ 24. **Accepter des suggestions IA trop “magiques”**
+
+**❌ Mauvaise pratique :** “Ça a l’air de marcher, allons-y.”
+**⚠️ Conséquence :** Code non maîtrisé.
+**✅ Bonne pratique :** Vérifie toujours la logique ligne par ligne.
+
+---
+
+## 📦 25. **Demander des correctifs IA sans environnement de test**
+
+**❌ Mauvaise pratique :** Pas de sandbox ni de test local.
+**⚠️ Conséquence :** Crash direct sur le projet de prod.
+**✅ Bonne pratique :** Toujours travailler sur une branche ou environnement isolé.
+
+---
+
+## 🔐 26. **Laisser l’IA manipuler des données réelles**
+
+**❌ Mauvaise pratique :** Prompt contenant des noms d’utilisateurs ou données sensibles.
+**⚠️ Conséquence :** Fuite RGPD, sécurité compromise.
+**✅ Bonne pratique :** Utiliser des jeux de données fictifs.
+
+---
+
+## ⚖️ 27. **Confondre aide à la génération et prise de décision**
+
+**❌ Mauvaise pratique :** Laisser l’IA décider du design ou de l’architecture.
+**⚠️ Conséquence :** Architecture incohérente ou sous-optimale.
+**✅ Bonne pratique :** Garder l’IA en support, pas en chef d’orchestre.
+
+---
+
+## 🧱 28. **Sous-estimer la dette technique générée par l’IA**
+
+**❌ Mauvaise pratique :** Multiplier les snippets sans maintenance.
+**⚠️ Conséquence :** Code fragmenté, obsolète.
+**✅ Bonne pratique :** Planifie des revues de code IA régulières.
+
+---
+
+## 🧩 29. **Chercher une solution IA avant de comprendre le problème**
+
+**❌ Mauvaise pratique :** “GPT va trouver la cause.”
+**⚠️ Conséquence :** Tu passes à côté du vrai diagnostic.
+**✅ Bonne pratique :** Comprends d’abord la racine du problème, ensuite consulte l’IA.
+
+---
+
+## 🧭 30. **Utiliser l’IA sans contrôle humain final**
+
+**❌ Mauvaise pratique :** Commit automatique du code IA.
+**⚠️ Conséquence :** Risque de régression, erreur critique, perte de responsabilité.
+**✅ Bonne pratique :** Relecture humaine obligatoire avant déploiement.
+
+---
+
+# ⚡ Bilan global : Risques Clés
+
+| Risque                  | Impact                            |
+| ----------------------- | --------------------------------- |
+| 🧠 Perte de compétences | Dépendance cognitive au modèle    |
+| ⚙️ Bugs silencieux      | Difficulté à déboguer du code IA  |
+| 🔓 Risques juridiques   | Code copié sans licence           |
+| 🧱 Dette technique      | Code fragmenté et non maintenu    |
+| 💣 Vulnérabilités       | Erreurs de sécurité non détectées |
+
+---
+
+# 🧭 Les 5 Bonnes Pratiques Fondamentales
+
+1️⃣ **Toujours fournir du contexte clair et complet.**
+2️⃣ **Tester et auditer systématiquement le code IA.**
+3️⃣ **Ne jamais exposer de données réelles ou sensibles.**
+4️⃣ **Versionner, commenter et documenter chaque changement IA.**
+5️⃣ **Garder une validation humaine obligatoire.**
+
+---
+
+# 🧩 Conclusion
+
+> L’IA ne remplace pas le développeur, elle révèle son niveau de rigueur.
+> Un bon dev + une bonne IA = productivité ×10.
+> Un dev distrait + IA = chaos ×100.
+
+L’avenir du code, ce n’est pas “l’IA qui code à ta place”.
+C’est **toi**, amplifié par l’IA — parce que tu sais poser les bonnes questions, tester les bonnes hypothèses, et garder le contrôle sur le résultat. 💡
+
+---
+
+
